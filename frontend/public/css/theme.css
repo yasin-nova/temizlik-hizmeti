@@ -159,6 +159,35 @@ nav.nav-site ul a:hover {
   background: #f1f5f9 !important;
 }
 
+/* Mobil: menü ikonu sağda; küçük ekranda yatay linkler gizli (hide-on-small-only) */
+nav.nav-site .mobile-nav-trigger {
+  color: #fff !important;
+  height: 68px;
+  line-height: 68px !important;
+  padding: 0 14px;
+  margin-right: 4px;
+}
+
+nav.nav-site .mobile-nav-trigger i {
+  line-height: inherit !important;
+}
+
+@media only screen and (max-width: 600px) {
+  nav.nav-site .nav-wrapper {
+    position: relative;
+  }
+
+  /* Açılır menü üstte, sağa hizalı — sayfa altında “yüzen” görünmesin */
+  nav.nav-site .nav-wrapper #nav-mobile-dropdown.dropdown-content {
+    top: 68px !important;
+    left: auto !important;
+    right: 8px !important;
+    width: min(calc(100vw - 16px), 300px) !important;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}
+
 /* ——— Hero / carousel ——— */
 .hero-section {
   padding: 2rem 0 2.5rem;
