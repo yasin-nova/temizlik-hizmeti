@@ -6,10 +6,22 @@ element.addEventListener("touchmove", function(e) {
 
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems);
+    var instances = M.Dropdown.init(elems, {
+      container: document.body,
+      coverTrigger: false,
+      constrainWidth: false,
+      alignment: 'right',
+      closeOnClick: true
+    });
   });
   
-  $('.dropdown-trigger').dropdown({coverTrigger: false, constrainWidth: false});
+  $('.dropdown-trigger').dropdown({
+    container: document.body,
+    coverTrigger: false,
+    constrainWidth: false,
+    alignment: 'right',
+    closeOnClick: true
+  });
 
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');

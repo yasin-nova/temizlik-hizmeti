@@ -238,10 +238,8 @@ nav.nav-site .mobile-nav-trigger i.material-icons {
     padding-right: 4px;
   }
 
-  nav.nav-site .nav-wrapper-flex #nav-mobile-dropdown.dropdown-content {
-    top: 68px !important;
-    left: auto !important;
-    right: 8px !important;
+  /* Konum: Materialize (container: body) — dar nav-wrapper yüzünden yukarı açılmayı önlemek */
+  #nav-mobile-dropdown.dropdown-content {
     width: min(calc(100vw - 16px), 300px) !important;
     max-height: 70vh;
     overflow-y: auto;
