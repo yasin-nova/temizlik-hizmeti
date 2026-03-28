@@ -12,15 +12,6 @@ element.addEventListener("touchmove", function(e) {
   $('.dropdown-trigger').dropdown({coverTrigger: false, constrainWidth: false});
 
   document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems);
-  });
-
-  $(document).ready(function(){
-    $('.fixed-action-btn').floatingActionButton();
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
   });

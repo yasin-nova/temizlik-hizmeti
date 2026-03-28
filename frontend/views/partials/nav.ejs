@@ -1,12 +1,12 @@
 <nav class="nav-site">
-  <div class="nav-wrapper blue darken-2">
+  <div class="nav-wrapper nav-wrapper-flex blue darken-2">
     <a href="/" class="brand-logo">Pro Temizlik</a>
 
-    <a href="#" class="dropdown-trigger hide-on-med-and-up mobile-nav-trigger" data-target="nav-mobile-dropdown" aria-label="Menüyü aç">
-      <i class="material-icons">menu</i>
+    <a href="#" class="dropdown-trigger hide-on-large-only mobile-nav-trigger" data-target="nav-mobile-dropdown" aria-label="Menüyü aç">
+      <i class="material-icons" aria-hidden="true">menu</i>
     </a>
 
-    <ul class="right hide-on-small-only desktop-nav-links">
+    <ul class="right hide-on-med-and-down desktop-nav-links">
       <li><a href="/about">Hakkımızda</a></li>
       <li><a href="/clean">Temizlik</a></li>
       <li><a href="/service">Hizmetler</a></li>
@@ -26,15 +26,11 @@
   </div>
 </nav>
 
-<div class="fixed-action-btn" style="margin-bottom: 40px;">
-  <a class="btn-floating btn-small orange darken-2">
-    <i class="large material-icons">contacts</i>
+<div class="quick-contact-float" role="group" aria-label="Hızlı iletişim">
+  <a href="https://wa.me/902125550123" class="qc-btn qc-wa" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp ile yazın">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
   </a>
-  <ul>                                   
-    <li><a class="btn-floating red" href="tel:+902125550123"><i class="material-icons">call</i></a></li>
-    <li><a class="btn-floating yellow darken-1"
-    href="mailto:info@protemizlik.com"><i class="material-icons">email</i></a></li>
-    <li><a class="btn-floating green" href="/quote"><i class="material-icons">assessment</i></a></li>
-    <li><a class="btn-floating blue" href="/booking"><i class="material-icons">schedule</i></a></li>
-  </ul>
+  <a href="tel:+902125550123" class="qc-btn qc-call" title="Ara" aria-label="Telefonu ara">
+    <i class="material-icons" aria-hidden="true">call</i>
+  </a>
 </div>

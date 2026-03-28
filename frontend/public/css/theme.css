@@ -111,16 +111,53 @@ nav.nav-site {
 nav.nav-site .nav-wrapper {
   height: 68px;
   line-height: 68px;
-  padding: 0 12px 0 8px;
+  padding: 0 10px 0 8px;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+/* Flex: logo + ikon navbar içinde kalır; tablet/mobilde taşma olmaz */
+nav.nav-site .nav-wrapper-flex {
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+nav.nav-site .nav-wrapper-flex .brand-logo {
+  float: none !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 68px;
+  line-height: 68px !important;
+}
+
+nav.nav-site .nav-wrapper-flex .desktop-nav-links {
+  float: none !important;
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: auto;
+  height: 68px;
+}
+
+nav.nav-site .nav-wrapper-flex .desktop-nav-links li {
+  float: none;
 }
 
 nav.nav-site .brand-logo {
   font-weight: 700;
   font-size: 1.125rem !important;
   letter-spacing: -0.03em;
-  padding: 0 12px;
+  padding: 0 10px;
   border-radius: var(--radius-sm);
   transition: background var(--transition);
 }
@@ -159,32 +196,56 @@ nav.nav-site ul a:hover {
   background: #f1f5f9 !important;
 }
 
-/* Mobil: menü ikonu sağda; küçük ekranda yatay linkler gizli (hide-on-small-only) */
+/* Hamburger: sabit kutu, navbar yüksekliğinde — taşma yok (tablet + mobil <993px) */
 nav.nav-site .mobile-nav-trigger {
+  float: none !important;
+  flex: 0 0 48px;
+  width: 48px;
+  min-width: 48px;
+  height: 48px !important;
+  line-height: 48px !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  align-self: center;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
   color: #fff !important;
-  height: 68px;
-  line-height: 68px !important;
-  padding: 0 14px;
-  margin-right: 4px;
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
 }
 
-nav.nav-site .mobile-nav-trigger i {
-  line-height: inherit !important;
+nav.nav-site .mobile-nav-trigger i.material-icons {
+  font-size: 26px !important;
+  line-height: 1 !important;
+  width: 26px;
+  height: 26px;
 }
 
-@media only screen and (max-width: 600px) {
-  nav.nav-site .nav-wrapper {
+@media only screen and (min-width: 993px) {
+  nav.nav-site .nav-wrapper-flex .brand-logo {
+    flex: 0 1 auto;
+    max-width: none;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  nav.nav-site .nav-wrapper-flex {
     position: relative;
   }
 
-  /* Açılır menü üstte, sağa hizalı — sayfa altında “yüzen” görünmesin */
-  nav.nav-site .nav-wrapper #nav-mobile-dropdown.dropdown-content {
+  nav.nav-site .nav-wrapper-flex .brand-logo {
+    padding-right: 4px;
+  }
+
+  nav.nav-site .nav-wrapper-flex #nav-mobile-dropdown.dropdown-content {
     top: 68px !important;
     left: auto !important;
     right: 8px !important;
     width: min(calc(100vw - 16px), 300px) !important;
     max-height: 70vh;
     overflow-y: auto;
+    margin: 0 !important;
   }
 }
 
@@ -490,23 +551,6 @@ footer.page-footer .footer-copyright .blue-text {
   background: linear-gradient(145deg, #f97316, #ea580c) !important;
 }
 
-.fixed-action-btn > a.btn-floating.orange.darken-2 {
-  background: linear-gradient(145deg, #fb923c, #f97316) !important;
-  box-shadow: var(--shadow-lg) !important;
-}
-
-.fixed-action-btn > a.btn-floating.orange.darken-2:hover {
-  background: linear-gradient(145deg, #f97316, #ea580c) !important;
-}
-
-.fixed-action-btn a.btn-floating.green {
-  background-color: var(--color-success) !important;
-}
-
-.fixed-action-btn .btn-floating {
-  border-radius: var(--radius-md) !important;
-}
-
 .chip.green.accent-1 {
   background-color: #dcfce7 !important;
   color: #166534 !important;
@@ -560,4 +604,57 @@ main.container .card.horizontal {
 main.container .card-title {
   font-family: var(--font-heading) !important;
   letter-spacing: -0.02em;
+}
+
+/* Sabit WhatsApp + Ara */
+.quick-contact-float {
+  position: fixed;
+  right: 23px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.qc-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qc-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+}
+
+.qc-wa {
+  background: #25d366;
+}
+
+.qc-wa .fa-brands {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.qc-call {
+  background: linear-gradient(145deg, var(--color-primary-bright), var(--color-primary));
+}
+
+.qc-call .material-icons {
+  font-size: 28px;
+}
+
+@media (max-width: 600px) {
+  .quick-contact-float {
+    right: 16px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
 }
