@@ -7,8 +7,12 @@
 <main class="container" style="padding-bottom: 3rem;">
   <article>
     <header class="section" style="padding-bottom: 0;">
+      <p class="grey-text" style="font-size: 13px; margin-bottom: 0.35rem;"><%= service.name %></p>
       <h1 class="blue-text text-darken-3" style="font-size: 1.75rem; font-weight: 700;"><%= service.name %> — İzmir <%= district.name %></h1>
-      <p class="grey-text text-darken-2" style="max-width: 42rem; font-size: 15px;">
+      <p class="grey-text text-darken-2" style="max-width: 42rem; font-size: 15px; font-weight: 500;">
+        <%= service.tagline %>
+      </p>
+      <p class="grey-text text-darken-2" style="max-width: 42rem; font-size: 14px; margin-top: 0.75rem;">
         <%= metaLead %>
       </p>
     </header>
@@ -16,23 +20,53 @@
     <nav class="breadcrumb" aria-label="Sayfa konumu" style="margin: 1rem 0 1.5rem; font-size: 14px;">
       <a href="/">Ana sayfa</a>
       <span class="grey-text"> / </span>
-      <a href="/izmir">İzmir</a>
+      <a href="/hizmetler">Hizmetler</a>
       <span class="grey-text"> / </span>
-      <a href="/izmir/<%= district.slug %>"><%= district.name %></a>
+      <a href="/hizmetler/<%= service.slug %>"><%= service.name %></a>
       <span class="grey-text"> / </span>
-      <span class="grey-text text-darken-2"><%= service.shortLabel %></span>
+      <span class="grey-text text-darken-2">İzmir <%= district.name %></span>
     </nav>
 
     <div class="section" style="padding-top: 0;">
       <% bodyParagraphs.forEach(function (p) { %>
-        <p style="line-height: 1.7; margin-bottom: 1rem;"><%= p %></p>
+        <p style="line-height: 1.75; margin-bottom: 1rem; max-width: 42rem;"><%= p %></p>
       <% }); %>
     </div>
 
+    <div class="section" style="padding-top: 0;">
+      <h2 class="h6" style="font-weight: 600; color: var(--color-primary-dark);">Bu kapsamda neler yapıyoruz?</h2>
+      <ul class="browser-default" style="padding-left: 1.25rem; max-width: 40rem; line-height: 1.75;">
+        <% service.highlights.forEach(function (line) { %>
+          <li style="margin-bottom: 0.35rem;"><%= line %></li>
+        <% }); %>
+      </ul>
+      <p style="margin-top: 1rem;">
+        <a href="/hizmetler/<%= service.slug %>" class="blue-text text-darken-2" style="font-weight: 600;">Genel hizmet sayfası: <%= service.name %> →</a>
+      </p>
+    </div>
+
+    <% if (typeof primaryDistricts !== 'undefined' && primaryDistricts.length) { %>
+    <div class="section" style="padding-top: 0;">
+      <h2 class="h6" style="font-weight: 600; color: var(--color-primary-dark);">Aynı hizmet — diğer öncelikli bölgeler</h2>
+      <p class="grey-text text-darken-2" style="font-size: 14px; max-width: 40rem;">İzmir’de aynı kategori için diğer ilçe sayfalarına geçmek için tıklayın.</p>
+      <div class="row" style="margin-top: 0.75rem;">
+        <% primaryDistricts.forEach(function (d) { %>
+          <% if (d.slug !== district.slug) { %>
+          <div class="col s6 m4 l3">
+            <a href="/izmir/<%= d.slug %>/<%= service.slug %>" class="card-panel hoverable blue lighten-5 blue-text text-darken-3 center-align" style="display: block; border-radius: var(--radius-md); font-weight: 600; padding: 12px 8px; font-size: 14px;">
+              <%= d.name %>
+            </a>
+          </div>
+          <% } %>
+        <% }); %>
+      </div>
+    </div>
+    <% } %>
+
     <div class="section center-align">
-      <a href="/quote" class="waves-effect waves-light btn" style="margin: 4px;">Teklif al</a>
-      <a href="/booking" class="waves-effect waves-light btn" style="margin: 4px;">Randevu</a>
-      <a href="tel:+902125550123" class="waves-effect waves-light btn" style="margin: 4px;"><i class="fa-solid fa-phone"></i> Ara</a>
+      <a href="/quote" class="waves-effect waves-light btn blue darken-2" style="margin: 4px;">Teklif al</a>
+      <a href="/booking" class="waves-effect waves-light btn blue darken-2" style="margin: 4px;">Randevu</a>
+      <a href="tel:+905355271254" class="waves-effect waves-light btn white blue-text text-darken-3" style="margin: 4px; border: 1px solid rgba(29,78,216,0.35);"><i class="fa-solid fa-phone"></i> 0535 527 12 54</a>
     </div>
   </article>
 </main>

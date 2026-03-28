@@ -8,7 +8,8 @@
   <header class="section">
     <h1 class="blue-text text-darken-3" style="font-size: 1.75rem; font-weight: 700;">İzmir temizlik hizmeti bölgeleri</h1>
     <p class="grey-text text-darken-2" style="max-width: 42rem;">
-      Aşağıdaki ilçe sayfalarından hizmet kategorilerine ulaşabilirsiniz. Metinler örnektir; kendi hizmet açıklamalarınızla güncelleyebilirsiniz.
+      Öncelikli bölgeler (Konak, Karşıyaka, Bornova, Buca, Gaziemir, Balçova, Çiğli, Bayraklı) listede üstte yer alır.
+      Her ilçe sayfasından <a href="/hizmetler" class="blue-text text-darken-2">hizmet kategorileri</a> ile eşleşen detay ve talep bağlantılarına gidebilirsiniz.
     </p>
   </header>
 
@@ -18,11 +19,15 @@
     <span class="grey-text text-darken-2">İzmir</span>
   </nav>
 
+  <% var primarySet = {}; primaryDistricts.forEach(function (p) { primarySet[p.slug] = true; }); %>
   <div class="row">
     <% districts.forEach(function (d) { %>
       <div class="col s6 m4 l3">
-        <div class="card-panel blue darken-1 white-text hoverable" style="margin-bottom: 12px;">
-          <a href="/izmir/<%= d.slug %>" class="white-text" style="font-weight: 600;"><%= d.name %></a>
+        <div class="card-panel blue darken-1 white-text hoverable" style="margin-bottom: 12px; position: relative;">
+          <% if (primarySet[d.slug]) { %>
+            <span class="new badge amber darken-2" style="position: absolute; top: 8px; right: 8px;" title="Öncelikli hizmet bölgesi">Öncelikli</span>
+          <% } %>
+          <a href="/izmir/<%= d.slug %>" class="white-text" style="font-weight: 600; display: inline-block; padding-right: 4px;"><%= d.name %></a>
         </div>
       </div>
     <% }); %>

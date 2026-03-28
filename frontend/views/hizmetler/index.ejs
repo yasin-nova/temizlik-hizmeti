@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('../partials/head.ejs') %>
+<body>
+<%- include('../partials/nav.ejs') %>
+
+<main class="container page-hizmetler" style="padding-bottom: 3rem;">
+  <header class="section" style="padding-bottom: 0;">
+    <h1 class="blue-text text-darken-3" style="font-size: 1.85rem; font-weight: 700;">Hizmetlerimiz</h1>
+    <p class="grey-text text-darken-2" style="max-width: 40rem; line-height: 1.65;">
+      Kurumsal (B2B), konut (B2C) ve niş alanlarda İzmir genelinde planlı temizlik. Her kategori için detay sayfasında kapsam özeti, öncelikli ilçe bağlantıları ve hızlı talep seçenekleri yer alır.
+    </p>
+  </header>
+
+  <nav class="breadcrumb" aria-label="Sayfa konumu" style="margin: 1rem 0 1.5rem; font-size: 14px;">
+    <a href="/">Ana sayfa</a>
+    <span class="grey-text"> / </span>
+    <span class="grey-text text-darken-2">Hizmetler</span>
+  </nav>
+
+  <% serviceGroups.forEach(function (g) { %>
+    <section class="section hizmet-group" style="padding-top: 1.25rem;">
+      <h2 class="h5" style="font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.35rem;"><%= g.title %></h2>
+      <p class="grey-text text-darken-1" style="font-size: 14px; max-width: 38rem; margin-bottom: 1rem;"><%= g.blurb %></p>
+      <div class="row">
+        <% serviceCategories.filter(function (s) { return s.group === g.id; }).forEach(function (s) { %>
+          <div class="col s12 m6 l4">
+            <div class="card hoverable hizmet-card" style="border-radius: var(--radius-md); height: 100%; display: flex; flex-direction: column;">
+              <div class="card-content" style="flex: 1;">
+                <span class="card-title blue-text text-darken-3" style="font-size: 1.05rem; line-height: 1.35;"><%= s.name %></span>
+                <p class="grey-text text-darken-2" style="font-size: 13px; margin-top: 0.5rem;"><%= s.tagline %></p>
+              </div>
+              <div class="card-action" style="border-top: 1px solid rgba(0,0,0,0.06);">
+                <a href="/hizmetler/<%= s.slug %>" class="blue-text text-darken-2" style="font-weight: 600;">Detay ve bölgeler</a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+  <% }); %>
+
+  <div class="section center-align card-panel blue lighten-5" style="border-radius: var(--radius-md); margin-top: 1rem;">
+    <p style="margin: 0 0 1rem; font-weight: 600; color: var(--color-primary-dark);">Teklif veya randevu</p>
+    <a href="/quote" class="waves-effect waves-light btn blue darken-2" style="margin: 4px;">Teklif al</a>
+    <a href="/booking" class="waves-effect waves-light btn blue darken-2" style="margin: 4px;">Randevu</a>
+    <a href="/izmir" class="waves-effect waves-light btn-flat blue-text text-darken-3" style="margin: 4px;">İzmir ilçeleri</a>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<%- include('../partials/scripts.ejs') %>
+</body>
+</html>

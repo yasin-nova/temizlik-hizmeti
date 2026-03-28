@@ -2,7 +2,14 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
-const { districts, serviceCategories, findDistrict, findService } = require("./data/izmir-seo");
+const {
+  districts,
+  primaryDistricts,
+  serviceGroups,
+  serviceCategories,
+  findDistrict,
+  findService
+} = require("./data/izmir-seo");
 const { getBaseUrl, absoluteUrl, defaultMetaDescription, buildJsonLdGraph } = require("./lib/seo-helpers");
 
 const app = express();
@@ -47,9 +54,76 @@ app.get('/clean', (req, res) => {
 });
 
 app.get('/service', (req, res) => {
-  res.render('service', {
-    title: 'Kaliteli Temizlik Anlayışımız',
-    metaDescription: 'Konut ve ticari temizlik hizmetleri özeti. Kapsam ve planlama (örnek metin).'
+  res.redirect(301, '/hizmetler');
+});
+
+app.get('/hizmetler', (req, res) => {
+  const base = getBaseUrl(req);
+  const pageUrl = absoluteUrl(req, '/hizmetler');
+  const metaDescription =
+    'İzmir’de kurumsal (B2B), konut (B2C) ve niş temizlik kategorileri. Her hizmet için detay sayfası, ilçe bazlı talep ve hızlı iletişim.';
+  const jsonLd = buildJsonLdGraph({
+    baseUrl: base,
+    crumbs: [
+      { name: 'Ana sayfa', path: '/' },
+      { name: 'Hizmetler', path: '/hizmetler' }
+    ]
+  });
+  res.render('hizmetler/index', {
+    title: 'Hizmetlerimiz',
+    pageTitleFull: 'Temizlik hizmetleri — Kurumsal ve konut | Pro Temizlik İzmir',
+    metaDescription,
+    canonicalUrl: pageUrl,
+    jsonLd,
+    serviceGroups,
+    serviceCategories
+  });
+});
+
+app.get('/hizmetler/:slug', (req, res) => {
+  const service = findService(req.params.slug);
+  if (!service) {
+    return res.status(404).render('error', { title: 'Sayfa Bulunamadı' });
+  }
+  const base = getBaseUrl(req);
+  const pathOnly = `/hizmetler/${service.slug}`;
+  const pageUrl = absoluteUrl(req, pathOnly);
+  const metaDescription = `${service.name} — ${service.tagline} İzmir. Teklif, randevu ve ilçe bazlı profesyonel temizlik.`;
+  const serviceBlock = {
+    '@type': 'Service',
+    name: `${service.name} | Pro Temizlik İzmir`,
+    description: service.intro,
+    url: pageUrl,
+    areaServed: { '@type': 'City', name: 'İzmir' },
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Pro Temizlik Hizmetleri',
+      url: `${base}/`
+    }
+  };
+  const jsonLd = buildJsonLdGraph({
+    baseUrl: base,
+    crumbs: [
+      { name: 'Ana sayfa', path: '/' },
+      { name: 'Hizmetler', path: '/hizmetler' },
+      { name: service.shortLabel, path: pathOnly }
+    ],
+    serviceBlock
+  });
+  const groupMeta = serviceGroups.find((g) => g.id === service.group) || {
+    title: '',
+    blurb: ''
+  };
+  res.render('hizmetler/category', {
+    title: service.name,
+    pageTitleFull: `${service.name} — İzmir | Pro Temizlik`,
+    metaDescription,
+    canonicalUrl: pageUrl,
+    jsonLd,
+    service,
+    primaryDistricts,
+    serviceGroups,
+    groupMeta
   });
 });
 
@@ -90,12 +164,12 @@ app.get('/izmir/:ilce/:hizmet', (req, res) => {
   const base = getBaseUrl(req);
   const pathOnly = `/izmir/${district.slug}/${service.slug}`;
   const pageUrl = absoluteUrl(req, pathOnly);
-  const metaLead = `${district.name} ilçesinde ${service.name.toLowerCase()} talebi için örnek açıklama metni. Gerçek kapsam ve fiyatı sonra güncelleyebilirsiniz.`;
-  const metaDescription = `${district.name} — ${service.name}. İzmir’de profesyonel temizlik (örnek SEO metni). Teklif ve randevu için iletişime geçin.`;
+  const metaLead = `${district.name} ilçesinde ${service.name.toLowerCase()}: ${service.tagline}`;
+  const metaDescription = `${service.name} — ${district.name}, İzmir. ${service.tagline} Ücretsiz keşif, teklif ve randevu için iletişime geçin.`;
   const bodyParagraphs = [
-    `${district.name} bölgesinde ${service.name} hizmeti sunuyoruz. Bu paragraf örnektir; hizmet detaylarını, süreleri ve kullanılan ürünleri buraya yazın.`,
-    `İzmir genelinde benzer hizmet kategorileri için diğer ilçe sayfalarımıza da göz atabilirsiniz. İçerikleri işletmenize göre özelleştirmeniz SEO açısından önerilir.`,
-    `Hızlı iletişim: teklif formu, randevu veya telefon ile bize ulaşın.`
+    `${district.name} ilçesinde ve yakın mahallelerde ${service.name} ihtiyaçlarınız için keşif, yazılı kapsam ve uygulama planı sunuyoruz. ${service.tagline}`,
+    service.intro,
+    `${district.name} başta olmak üzere İzmir’in diğer ilçelerinde de aynı kategori altında hizmet verebiliyoruz. Genel hizmet tanımı için “${service.name}” sayfamıza göz atabilir; farklı bir ilçe seçmek için İzmir bölgeleri menüsünü kullanabilirsiniz.`
   ];
   const serviceBlock = {
     '@type': 'Service',
@@ -128,7 +202,8 @@ app.get('/izmir/:ilce/:hizmet', (req, res) => {
     district,
     service,
     metaLead,
-    bodyParagraphs
+    bodyParagraphs,
+    primaryDistricts
   });
 });
 
@@ -163,7 +238,8 @@ app.get('/izmir/:ilce', (req, res) => {
 app.get('/izmir', (req, res) => {
   const base = getBaseUrl(req);
   const pageUrl = absoluteUrl(req, '/izmir');
-  const metaDescription = 'İzmir ilçelerinde temizlik hizmeti bölgeleri ve hizmet kategorileri listesi. Örnek içerik — ilçe ve kategori sayfalarını güncelleyin.';
+  const metaDescription =
+    'İzmir ilçelerinde temizlik: Konak, Karşıyaka, Bornova ve diğer bölgeler. Her ilçe için hizmet kategorileri ve talep formu.';
   const jsonLd = buildJsonLdGraph({
     baseUrl: base,
     crumbs: [
@@ -171,26 +247,37 @@ app.get('/izmir', (req, res) => {
       { name: 'İzmir', path: '/izmir' }
     ]
   });
+  const primarySlugs = new Set(primaryDistricts.map((d) => d.slug));
+  const districtsOrdered = [
+    ...primaryDistricts,
+    ...districts.filter((d) => !primarySlugs.has(d.slug))
+  ];
   res.render('location/izmir', {
     title: 'İzmir temizlik bölgeleri',
     pageTitleFull: 'İzmir ilçeleri temizlik hizmetleri | Pro Temizlik',
     metaDescription,
     canonicalUrl: pageUrl,
     jsonLd,
-    districts
+    districts: districtsOrdered,
+    primaryDistricts
   });
 });
 
 app.get('/sitemap.xml', (req, res) => {
   const base = getBaseUrl(req);
   const urls = [{ loc: `${base}/`, changefreq: 'weekly', priority: '1' }];
-  ['/about', '/clean', '/service', '/standard', '/hire', '/quote', '/booking', '/izmir'].forEach((p) => {
-    urls.push({ loc: `${base}${p}`, changefreq: 'weekly', priority: '0.8' });
+  ['/about', '/clean', '/hizmetler', '/standard', '/hire', '/quote', '/booking', '/izmir'].forEach((p) => {
+    urls.push({ loc: `${base}${p}`, changefreq: 'weekly', priority: '0.85' });
+  });
+  serviceCategories.forEach((s) => {
+    urls.push({ loc: `${base}/hizmetler/${s.slug}`, changefreq: 'monthly', priority: '0.75' });
   });
   districts.forEach((d) => {
     urls.push({ loc: `${base}/izmir/${d.slug}`, changefreq: 'monthly', priority: '0.7' });
+  });
+  primaryDistricts.forEach((d) => {
     serviceCategories.forEach((s) => {
-      urls.push({ loc: `${base}/izmir/${d.slug}/${s.slug}`, changefreq: 'monthly', priority: '0.6' });
+      urls.push({ loc: `${base}/izmir/${d.slug}/${s.slug}`, changefreq: 'monthly', priority: '0.65' });
     });
   });
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

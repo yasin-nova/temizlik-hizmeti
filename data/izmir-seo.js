@@ -1,7 +1,25 @@
 /**
- * Örnek içerik — İzmir ilçeleri ve hizmet kategorileri (SEO sayfaları).
- * Üretimde metinleri ve listeyi güncelleyin.
+ * İzmir ilçeleri + hizmet kataloğu (SEO / dinamik sayfalar).
  */
+
+const {
+  serviceGroups,
+  serviceCategories,
+  findService,
+  servicesInGroup
+} = require('./service-catalog');
+
+/** Öncelikli hizmet bölgeleri (landing ve iç linklerde öne çıkar) */
+const PRIMARY_DISTRICT_SLUGS = [
+  'konak',
+  'karsiyaka',
+  'bornova',
+  'buca',
+  'gaziemir',
+  'balcova',
+  'cigli',
+  'bayrakli'
+];
 
 const districts = [
   { slug: 'aliaga', name: 'Aliağa' },
@@ -36,62 +54,21 @@ const districts = [
   { slug: 'urla', name: 'Urla' }
 ];
 
-const serviceCategories = [
-  {
-    slug: 'konut-temizligi',
-    name: 'Konut temizliği',
-    shortLabel: 'Konut',
-    intro:
-      'Daire ve müstakil konutlarda düzenli veya tek seferlik temizlik. Örnek metin — hizmet kapsamınızı buraya yazın.'
-  },
-  {
-    slug: 'ofis-temizligi',
-    name: 'Ofis ve iş yeri temizliği',
-    shortLabel: 'Ofis',
-    intro:
-      'Çalışma alanları, ortak kullanım ve toplantı odaları. Örnek metin — çalışma saatlerinize göre planlama.'
-  },
-  {
-    slug: 'derin-temizlik',
-    name: 'Derin temizlik',
-    shortLabel: 'Derin temizlik',
-    intro:
-      'Detaylı yüzey temizliği ve hijyen odaklı uygulama. Örnek metin — süre ve ekipman bilgisi ekleyin.'
-  },
-  {
-    slug: 'insaat-sonrasi-temizlik',
-    name: 'İnşaat sonrası temizlik',
-    shortLabel: 'İnşaat sonrası',
-    intro:
-      'Talaş ve inşaat tozuna yönelik temizlik. Örnek metin — güvenlik ve ekipman gereksinimleri.'
-  },
-  {
-    slug: 'cam-temizligi',
-    name: 'Cam ve cephe temizliği',
-    shortLabel: 'Cam',
-    intro:
-      'İç ve dış cam yüzeyleri. Örnek metin — yükseklik ve erişim koşulları.'
-  },
-  {
-    slug: 'dezenfeksiyon',
-    name: 'Dezenfeksiyon ve hijyen',
-    shortLabel: 'Dezenfeksiyon',
-    intro:
-      'Yüzey dezenfeksiyonu ve sanitasyon. Örnek metin — kullanılan ürün sınıfları.'
-  }
-];
+const primaryDistricts = PRIMARY_DISTRICT_SLUGS.map((slug) =>
+  districts.find((d) => d.slug === slug)
+).filter(Boolean);
 
 function findDistrict(slug) {
   return districts.find((d) => d.slug === slug) || null;
 }
 
-function findService(slug) {
-  return serviceCategories.find((s) => s.slug === slug) || null;
-}
-
 module.exports = {
   districts,
+  primaryDistricts,
+  primaryDistrictSlugs: PRIMARY_DISTRICT_SLUGS,
+  serviceGroups,
   serviceCategories,
   findDistrict,
-  findService
+  findService,
+  servicesInGroup
 };
