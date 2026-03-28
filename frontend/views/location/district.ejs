@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('../partials/head.ejs') %>
+<body>
+<%- include('../partials/nav.ejs') %>
+
+<main class="container" style="padding-bottom: 3rem;">
+  <header class="section">
+    <h1 class="blue-text text-darken-3" style="font-size: 1.75rem; font-weight: 700;">İzmir <%= district.name %> temizlik hizmetleri</h1>
+    <p class="grey-text text-darken-2" style="max-width: 42rem;">
+      <%= district.name %> için sunduğumuz hizmet kategorileri. Örnek içerik — fiyat ve kapsam bilgilerini kendi işletmenize göre düzenleyin.
+    </p>
+  </header>
+
+  <nav class="breadcrumb" aria-label="Sayfa konumu" style="margin-bottom: 1.5rem; font-size: 14px;">
+    <a href="/">Ana sayfa</a>
+    <span class="grey-text"> / </span>
+    <a href="/izmir">İzmir</a>
+    <span class="grey-text"> / </span>
+    <span class="grey-text text-darken-2"><%= district.name %></span>
+  </nav>
+
+  <h2 class="h6" style="font-weight: 600; margin-bottom: 1rem;">Hizmet kategorileri</h2>
+  <div class="row">
+    <% serviceCategories.forEach(function (s) { %>
+      <div class="col s12 m6">
+        <div class="card horizontal hoverable">
+          <div class="card-stacked">
+            <div class="card-content">
+              <span class="card-title blue-text text-darken-3" style="font-size: 1.1rem;"><%= s.name %></span>
+              <p style="font-size: 14px; color: #546e7a;"><%= s.intro %></p>
+            </div>
+            <div class="card-action">
+              <a href="/izmir/<%= district.slug %>/<%= s.slug %>" class="blue-text text-darken-2">Detay ve talep</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<%- include('../partials/scripts.ejs') %>
+</body>
+</html>

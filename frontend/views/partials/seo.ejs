@@ -1,0 +1,25 @@
+<% 
+  var _docTitle = (typeof pageTitleFull !== 'undefined' && pageTitleFull) 
+    ? pageTitleFull 
+    : ('Pro Temizlik Hizmetleri | ' + (typeof title !== 'undefined' ? title : 'Ana Sayfa'));
+  var _desc = (typeof metaDescription !== 'undefined' && metaDescription) ? metaDescription : (typeof defaultMetaDescription !== 'undefined' ? defaultMetaDescription : 'Pro Temizlik Hizmetleri — İzmir genelinde profesyonel temizlik.');
+  var _canonical = (typeof canonicalUrl !== 'undefined' && canonicalUrl) ? canonicalUrl : '';
+%>
+<meta name="description" content="<%= _desc %>">
+<% if (_canonical) { %>
+<link rel="canonical" href="<%= _canonical %>">
+<% } %>
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<%= _docTitle %>">
+<meta property="og:description" content="<%= _desc %>">
+<% if (_canonical) { %>
+<meta property="og:url" content="<%= _canonical %>">
+<% } %>
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<%= _docTitle %>">
+<meta name="twitter:description" content="<%= _desc %>">
+<% if (typeof jsonLd !== 'undefined' && jsonLd) { %>
+<script type="application/ld+json"><%- JSON.stringify(jsonLd) %></script>
+<% } %>

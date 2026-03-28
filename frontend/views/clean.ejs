@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('./partials/head.ejs') %> 
+<body>
+
+<%- include('./partials/nav.ejs') %>
+
+<div class="container-abt center-align" style="height: 100%;">  
+
+<h6 class="center-align" style="margin-top: 65px; font-weight: bold;">
+<span class="soon blue-text text-darken-2" 
+id="cleant">Sağlıklı ve düzenli bir ortam</span></h6> 
+
+<div class="container center-align">  
+  <div class="row">
+    <div class="col s6 push-s3" id="topz">
+      <p>Temizlik yalnızca görünür kirin değil; hava kalitesi, hijyen ve güvenlik standartlarının da korunmasıdır. Alanınıza uygun yöntem ve ürünleri birlikte belirliyoruz.</p>
+    </div>
+  </div>  
+</div>  
+  
+<div class="container center-align" style="margin-top: 40px;">
+  <div class="row">
+    <div class="col m6" id="clist">
+      <ul class="collapsible" id="clapse">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Genel temizlik</div>
+      <div class="collapsible-body"><span>Toz alma, süpürme, silme ve düzenleme adımları.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">expand_more</i>Mutfak ve banyo</div>
+      <div class="collapsible-body"><span>Yüzeyler, fayans ve sıhhi tesisat çevresi detaylı temizlik.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Zemin ve halı</div>
+      <div class="collapsible-body"><span>Uygun makine ve ürünle derinlemesine veya bakım temizliği.</span></div>
+    </li>
+
+    <li>
+      <div class="collapsible-header"><i class="material-icons">expand_more</i>Cam ve detay</div>
+      <div class="collapsible-body"><span>Çerçeveler, pervazlar ve erişilebilir yüzeylerin cilalanması.</span></div>
+    </li> 
+  </ul>
+    </div>
+    <div class="col m4">
+      <p>Her mekânda riskleri azaltmak için farklı protokoller uygularız. Ofiste yoğun kullanılan bölgeler, evde çocuk ve evcil hayvan alanları ayrı değerlendirilir.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container center-align">
+  <div class="row">
+    <div class="col s6 m5 push-m1">
+      <h6 class="blue-text text-darken-3" style="font-weight: bold;">Temizlik kontrol listesi</h6>
+      <p>Listemiz sayesinde hiçbir adım atlanmaz; teslim öncesi son kontrol yapılır. İsterseniz listeyi sizin önceliklerinize göre güncelleriz.</p>
+    </div>
+    <div class="col s6 m5" id="chex">
+      <p>
+      <label>
+        <input type="checkbox" class="filled-in" checked="checked" />
+        <span>Alanı baştan sona temizle</span>
+      </label>
+    </p>
+      <p>
+      <label>
+        <input type="checkbox" class="filled-in" checked="checked" />
+        <span>Temizlenen yüzeyi sanitize et</span>
+      </label>
+    </p>
+      <p>
+      <label>
+        <input type="checkbox" class="filled-in" checked="checked" />
+        <span>Gerekirse dezenfekte et</span>
+      </label>
+    </p>
+    </div>
+  </div>
+</div>  
+
+<div class="container lern orange-text text-darken-2" id="lernz">
+  <h6>Daha fazlası</h6>  
+  <a href="service"><span class="material-symbols-outlined material-icons prefix btn-floating amber darken-2 pulse" id="arrw"> 
+bubble_chart
+</span></a>
+  <h6>Hizmetlerimiz</h6> 
+</div>  
+  
+</div>  
+
+<div style="clear:both; margin-bottom: 120px; padding-bottom: 60px;"></div>    
+<%- include('./partials/footer.ejs') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+
+<%- include('./partials/scripts.ejs') %>
+
+</body>
+</html>

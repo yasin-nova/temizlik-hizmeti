@@ -1,0 +1,534 @@
+/**
+ * Pro Temizlik — güncel UI (2024+): tipografi, yarıçap, gölge, boşluk
+ */
+:root {
+  --color-primary: #1d4ed8;
+  --color-primary-bright: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-primary-darker: #1e3a8a;
+  --color-secondary: #fbbf24;
+  --color-secondary-orange: #f97316;
+  --color-bg: #f8fafc;
+  --color-bg-mesh: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.06) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(249, 115, 22, 0.05) 0px, transparent 45%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-accent-text: #334155;
+  --color-success: #22c55e;
+  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.12);
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body,
+html {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-bg-mesh) !important;
+  background-color: var(--color-bg) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.soon,
+.brand-logo {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h3,
+h6.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p,
+li {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-accent-text);
+}
+
+/* ——— Nav ——— */
+nav.nav-site {
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%) !important;
+  box-shadow: var(--shadow-md) !important;
+  height: 68px;
+  line-height: 68px;
+}
+
+nav.nav-site .nav-wrapper {
+  height: 68px;
+  line-height: 68px;
+  padding: 0 12px 0 8px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+nav.nav-site .brand-logo {
+  font-weight: 700;
+  font-size: 1.125rem !important;
+  letter-spacing: -0.03em;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+nav.nav-site .brand-logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+nav.nav-site ul a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+nav.nav-site ul a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dropdown-content {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  margin-top: 8px !important;
+}
+
+.dropdown-content li > a {
+  color: var(--color-text) !important;
+  font-weight: 500;
+  padding: 12px 20px !important;
+}
+
+.dropdown-content li > a:hover {
+  background: #f1f5f9 !important;
+}
+
+/* ——— Hero / carousel ——— */
+.hero-section {
+  padding: 2rem 0 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-section .hero-kicker {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.125rem, 2.5vw, 1.35rem);
+  color: var(--color-primary-dark);
+  letter-spacing: -0.03em;
+  margin: 0 auto 1.25rem;
+  max-width: 36rem;
+  line-height: 1.35;
+}
+
+.hero-carousel-wrap {
+  position: relative;
+  padding: 0 0 1rem;
+}
+
+.hero-carousel-wrap .carousel {
+  height: 340px !important;
+  perspective: 1200px;
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-carousel-wrap .carousel {
+    height: 240px !important;
+  }
+}
+
+.hero-carousel-wrap .carousel .carousel-item {
+  width: 280px !important;
+  height: auto !important;
+  margin-top: -70px;
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-carousel-wrap .carousel .carousel-item {
+    width: 220px !important;
+    margin-top: -40px;
+  }
+}
+
+.hero-carousel-wrap .carousel-item img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-carousel-wrap .carousel-item img {
+    height: 150px;
+  }
+}
+
+/* ——— Ana sayfa bölümleri ——— */
+.home-intro-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 3vw, 1.45rem);
+  letter-spacing: -0.03em;
+  color: var(--color-primary-darker);
+  margin-bottom: 1.5rem;
+}
+
+.modern-panel {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  border: none !important;
+  padding: 1.25rem 1.5rem !important;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.modern-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  height: 100%;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.feature-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.feature-card .feature-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.06));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.feature-card .feature-icon-wrap i {
+  color: var(--color-primary) !important;
+}
+
+.feature-card h3,
+.feature-card .feature-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.feature-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.cta-strip {
+  margin-top: 2.5rem;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  box-shadow: var(--shadow-sm);
+}
+
+.cta-strip .cta-headline {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+}
+
+/* ——— Form ——— */
+.input-field input,
+.input-field textarea,
+.input-field label {
+  font-size: 14px !important;
+}
+
+.input-field input:focus + label,
+.input-field textarea:focus + label,
+.input-field .prefix.active {
+  color: var(--color-primary-bright) !important;
+}
+
+.input-field input:focus,
+.input-field textarea:focus {
+  border-bottom: 1px solid var(--color-primary-bright) !important;
+  box-shadow: 0 1px 0 0 var(--color-primary-bright) !important;
+}
+
+/* ——— Butonlar ——— */
+.btn,
+.btn-small,
+.btn-large,
+button.btn,
+a.btn,
+a.btn-small,
+a.btn-large {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: #fff !important;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition) !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35) !important;
+  border-radius: var(--radius-md) !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em;
+}
+
+.btn,
+.btn-large,
+a.btn,
+a.btn-large {
+  font-size: 15px !important;
+  padding: 0 22px !important;
+  height: 44px !important;
+  line-height: 44px !important;
+}
+
+.btn-small,
+a.btn-small {
+  font-size: 14px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  padding: 0 18px !important;
+}
+
+.btn:hover,
+.btn:focus,
+.btn-small:hover,
+.btn-large:hover,
+button.btn:hover,
+a.btn:hover,
+a.btn:focus {
+  background: linear-gradient(180deg, #fb923c 0%, #f97316 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+.btn-flat {
+  background: transparent !important;
+  color: var(--color-primary-bright) !important;
+  box-shadow: none !important;
+}
+
+.btn-flat:hover {
+  background: rgba(37, 99, 235, 0.08) !important;
+  color: var(--color-primary-dark) !important;
+}
+
+/* ——— Footer ——— */
+footer.page-footer.blue.darken-3 {
+  background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%) !important;
+  padding-top: 2rem !important;
+  margin-top: 2rem;
+}
+
+footer.page-footer .blue-text.text-darken-4 {
+  color: #e0e7ff !important;
+}
+
+footer.page-footer a.blue-text.text-darken-4:hover {
+  color: #fcd34d !important;
+}
+
+footer.page-footer .footer-copyright .blue-text {
+  color: #a5b4fc !important;
+}
+
+/* ——— Materialize kartları ——— */
+.card-panel.blue.darken-1,
+.card-panel.blue.darken-1.modern-panel {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+}
+
+.card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.card.horizontal:hover {
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Mavi metin sınıfları — yeni palet */
+.blue-text.text-darken-2 {
+  color: var(--color-primary-dark) !important;
+}
+
+.blue-text.text-darken-4 {
+  color: var(--color-primary-darker) !important;
+}
+
+.blue-text.text-darken-1 {
+  color: var(--color-primary) !important;
+}
+
+.blue-text.text-darken-3 {
+  color: #1e40af !important;
+}
+
+.blue-text.text-lighten-1 {
+  color: var(--color-primary-bright) !important;
+}
+
+.modal .blue-text.text-darken-4,
+.modal .blue-text.text-darken-2 {
+  color: var(--color-primary-dark) !important;
+}
+
+.orange-text.text-darken-2,
+.orange-text.text-darken-3 {
+  color: #c2410c !important;
+}
+
+.btn-floating.amber.darken-2,
+.btn-floating.amber.darken-2.pulse {
+  background: linear-gradient(145deg, #fbbf24, #f59e0b) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.btn-floating.amber.darken-2:hover {
+  background: linear-gradient(145deg, #f97316, #ea580c) !important;
+}
+
+.fixed-action-btn > a.btn-floating.orange.darken-2 {
+  background: linear-gradient(145deg, #fb923c, #f97316) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.fixed-action-btn > a.btn-floating.orange.darken-2:hover {
+  background: linear-gradient(145deg, #f97316, #ea580c) !important;
+}
+
+.fixed-action-btn a.btn-floating.green {
+  background-color: var(--color-success) !important;
+}
+
+.fixed-action-btn .btn-floating {
+  border-radius: var(--radius-md) !important;
+}
+
+.chip.green.accent-1 {
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 500;
+}
+
+#chex span {
+  color: var(--color-primary-bright) !important;
+}
+
+.material-tooltip {
+  background-color: var(--color-primary-dark) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 12px !important;
+}
+
+.modal {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+
+.modal .modal-footer {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.toast.success,
+.card-panel.success,
+span.badge.success {
+  background-color: var(--color-success) !important;
+}
+
+/* Nav eski sınıf uyumu */
+nav .nav-wrapper.blue.darken-2 {
+  background: transparent !important;
+}
+
+footer.page-footer.blue.darken-3 {
+  box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.15);
+}
+
+.container-indx {
+  padding-bottom: 2rem;
+}
+
+/* Konum şablonları — kart uyumu */
+main.container .card.horizontal {
+  border-radius: var(--radius-md);
+}
+
+main.container .card-title {
+  font-family: var(--font-heading) !important;
+  letter-spacing: -0.02em;
+}

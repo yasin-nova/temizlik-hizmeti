@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('../partials/head.ejs') %>
+<body>
+<%- include('../partials/nav.ejs') %>
+
+<main class="container" style="padding-bottom: 3rem;">
+  <article>
+    <header class="section" style="padding-bottom: 0;">
+      <h1 class="blue-text text-darken-3" style="font-size: 1.75rem; font-weight: 700;"><%= service.name %> — İzmir <%= district.name %></h1>
+      <p class="grey-text text-darken-2" style="max-width: 42rem; font-size: 15px;">
+        <%= metaLead %>
+      </p>
+    </header>
+
+    <nav class="breadcrumb" aria-label="Sayfa konumu" style="margin: 1rem 0 1.5rem; font-size: 14px;">
+      <a href="/">Ana sayfa</a>
+      <span class="grey-text"> / </span>
+      <a href="/izmir">İzmir</a>
+      <span class="grey-text"> / </span>
+      <a href="/izmir/<%= district.slug %>"><%= district.name %></a>
+      <span class="grey-text"> / </span>
+      <span class="grey-text text-darken-2"><%= service.shortLabel %></span>
+    </nav>
+
+    <div class="section" style="padding-top: 0;">
+      <% bodyParagraphs.forEach(function (p) { %>
+        <p style="line-height: 1.7; margin-bottom: 1rem;"><%= p %></p>
+      <% }); %>
+    </div>
+
+    <div class="section center-align">
+      <a href="/quote" class="waves-effect waves-light btn" style="margin: 4px;">Teklif al</a>
+      <a href="/booking" class="waves-effect waves-light btn" style="margin: 4px;">Randevu</a>
+      <a href="tel:+902125550123" class="waves-effect waves-light btn" style="margin: 4px;"><i class="fa-solid fa-phone"></i> Ara</a>
+    </div>
+  </article>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<%- include('../partials/scripts.ejs') %>
+</body>
+</html>

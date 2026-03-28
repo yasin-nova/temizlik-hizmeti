@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('./partials/head.ejs') %> 
+<body>
+
+<%- include('./partials/nav.ejs') %>
+
+<div class="container center-align" style="font-weight: bold;">
+   <h6 class="center-align" style="margin-top: 70px; font-weight: bold;"><span class="soon blue-text text-darken-2">Hizmetlerimizi değerlendirin</span></h6>
+  <img src="/images/rateimg.jpg" class="rateimg" style="margin-left: -0.313rem;" alt="">
+  <p class="center-align blue-text text-lighten-1" style="margin-top: 35px;">Geri bildiriminizi bekliyoruz.</p>
+</div>
+  <p class="rateft center-align" style="font-size: 13px; max-width: 300px; font-weight: bold;">Aşağıdaki alanda düşüncelerinizi paylaşabilirsiniz. Her yorum bizim için değerlidir.</p>
+  
+<div class="valign-wrapper" style="margin-top: 30px; margin-bottom: 40px;">
+ <div class="row">
+   <form method="POST" action="/rateUs" class="col s12" id="rate-form">
+
+<div class="center-align">  
+  <div class="row" style="display:inline-block; vertical-align: middle;">
+     <div class="stars">
+      <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+      <label class="star" for="star-5"></label>
+
+      <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+      <label class="star" for="star-4"></label>
+
+      <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+      <label class="star" for="star-3"></label>
+
+      <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+      <label class="star" for="star-2"></label>
+
+      <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+      <label class="star" for="star-1"></label>
+    </div>
+  </div>
+</div>   
+
+ <div class="center-align">
+   <input type="checkbox" id="newsletter" />
+   <label for="newsletter" style="color: black; font-weight: bold; font-size: 14px">Puanınız:&nbsp;</label>
+   <textarea id="demo" type="text" name="score" readonly
+   style="border:none; text-align: center; pointer-events: none;"></textarea>
+</div> 
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="first_name" type="text" class="validate" name="first">
+          <label for="first_name">Ad</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="last_name" type="text" class="validate" name="last">
+          <label for="last_name">Soyad</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" data-length="350" name="comment"></textarea>
+          <label for="textarea1">Yorumunuz</label>
+        </div>
+      </div>
+
+      <div class="row center-align">
+      <button class="waves-effect waves-light btn" type="submit" name="action" style="margin-bottom: 60px;">Gönder</button> 
+      </div>  
+    </form>
+
+<div id="sz">   
+   <div class="container center-align">
+     <h6 class="center-align" style="font-weight: bold;">
+     <span class="soon blue-text text-darken-2">Örnek müşteri yorumları</span></h6>
+    <p class="rateft center-align" style="font-size: 13px; max-width: 300px; font-weight: bold;">Hizmetimiz hakkında ne dediklerini merak mı ediyorsunuz? Aşağıdaki yorumlara göz atın.</p>
+     <span class="material-symbols-outlined material-icons 
+ prefix" style="color: #CCCC00; font-size: 35px; filter: brightness(85%); padding-top: 20px;">
+reviews</span> 
+   </div>
+
+<div class="srate" id="srate" style="margin-top: 50px;">
+  <div class="chip green accent-1"> En yeni 
+    <i class="close material-icons">close</i>
+  </div>
+  <div class="chip green accent-1"> En eski
+    <i class="close material-icons">close</i>
+  </div>
+  <div class="chip green accent-1"> En yüksek
+    <i class="close material-icons">close</i>
+  </div>
+  <div class="chip green accent-1"> En düşük
+    <i class="close material-icons">close</i>
+  </div>
+  <div class="chip green accent-1"> Ortalama
+    <i class="close material-icons">close</i>
+  </div>
+</div>
+
+ <div class="row" style="margin-top: 60px;">
+    <div class="col-2 m6 center-align"> 
+        <div class="card horizontal">
+          <div class="card-stacked">
+           <h6 class="card-name left-align col r4">
+             Leyla Öztürk</h6>
+             <div class="card-content">
+               <p>Ev temizliği zamanında gelindi, her oda titizlikle yapıldı. Teşekkürler.</p> 
+            </div>
+            <div class="card-action">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div>
+    </div> 
+    <div class="col-2 m6 center-align">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <h6 class="card-name left-align col r4">
+              Can Yılmaz</h6>
+             <div class="card-content">
+              <p>Ofisimiz haftalık bakımda; düzenli ve güvenilir bir ekip.</p>
+            </div>
+            <div class="card-action">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div> 
+    </div> 
+    <div class="col-2 m6 center-align">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <h6 class="card-name left-align col r4">
+              Selin Aktaş</h6>
+             <div class="card-content">
+              <p>Taşınma sonrası derin temizlik harikaydı, tekrar tercih ederim.</p>
+            </div>
+            <div class="card-action">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div> 
+    </div> 
+ </div>
+</div> 
+   
+<p class="center-align blue-text text-darken-1" style="font-weight: bold;">Görüşleriniz bizim için önemli</p>
+<p class="rateft">İşinize verdiğiniz değer için teşekkür ederiz; kaliteyi sürdürmek için sizden gelen her öneriyi dikkate alıyoruz. Olumlu ya da yapıcı eleştiriler, hedeflediğimiz mükemmelliğe bir adım daha yaklaşmamızı sağlar. Bu anlayış, size verdiğimiz hizmet standardının temelidir.</p>
+
+ </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>
+  
+<script> 
+var resetSelected = function (event) {
+ document.getElementById("demo").innerHTML = "0"; 
+ document.getElementById("rate-form").reset();
+};
+var sz = document.getElementById("sz");
+sz.addEventListener('click', resetSelected, true); 
+</script> 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+<%- include('./partials/scripts.ejs') %>
+ 
+</body>
+</html>

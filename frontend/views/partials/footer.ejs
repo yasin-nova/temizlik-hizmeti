@@ -1,0 +1,113 @@
+<footer class="page-footer blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h6 class="white-text" style="margin-left: 0.8rem;">Profesyonel Temizlik Hizmetleri</h6>
+          <p class="col s12 m11 grey-text text-lighten-4"style="margin-bottom:25px;">Sizden haber almak isteriz! Düşüncelerinizi iletmek için bize yazın. Güncellemeler ve temizlik ipuçları için sosyal medyadan takip edin. Güveniniz ve tavsiyeleriniz için teşekkür ederiz.</p>
+           
+<div class="foot-social row center-align" id="med_ia">
+  <a class="modal-trigger" href="#modal1">
+  <i class="fa-solid fa-envelope fa-md col l2"></i></a>
+  <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-md col l2"></i></a>
+  <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-md col l2"></i></a>
+  <a href="https://twitter.com/home"><i class="fa-brands fa-twitter fa-md col l2"></i></a>
+        
+  <div id="modal1" class="modal">
+    <div class="modal-content blue-text text-darken-4">
+      <h6><b>Bize Mesaj Gönderin</b></h6>
+      <p class="blue-text text-darken-2" style="font-weight: bold;">Görüş ve önerilerinizi duymak isteriz.</p>
+    </div>
+  <div class="valign-wrapper">
+    <form method="POST" action="/sendFeed" class="col s10 pull-s1">
+      <div class="row">
+        <div class="input-field col s6">
+        <i class="material-icons prefix blue-text text-darken-4" style="font-size: 25px;">account_circle</i>
+          <input id="first_name" type="text" class="validate" name="first" autocomplete="given-name">
+          <label for="first_name">Ad</label>
+        </div>
+        <div class="input-field col s6">
+        <i class="material-icons prefix blue-text text-darken-4" style="font-size: 25px;">account_circle</i>
+          <input id="last_name" type="text" class="validate" name="last">
+          <label for="last_name">Soyad</label>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="input-field col s12">
+          <i class="material-icons prefix blue-text text-darken-4" style="font-size: 25px;">email</i>
+          <input id="email" type="email" class="validate" name="email"  autocomplete="email">
+          <label for="email">E-posta adresi</label>
+        </div>
+      </div>
+      <div class="row center-align">
+        <div class="input-field col s12">
+          <i class="material-icons prefix blue-text text-darken-4" style="font-size: 25px;">feedback</i>
+          <textarea id="textarea1" class="materialize-textarea" data-length="350" name="comment"></textarea>
+          <label for="textarea1">Yorumunuz</label>
+        </div>
+      </div>
+      <div class="row">
+       <button class="waves-effect waves-light btn" type="submit" name="action">Gönder</button>
+      </div>
+    </form> 
+  </div>
+    <div class="modal-footer">
+      <a href="#!" class="waves-effect waves-light btn blue darken-2 modal-close">Kapat</a>
+    </div>
+  </div>   
+</div> 
+          
+<div class="row" style="margin-left: 2px;">
+    <div class="input-field inline col s6">
+      <input id="search" type="text" class="validate blue-grey lighten-5" style="height: 40px;" placeholder="&nbsp;Ara...">
+    </div>
+    <div class="input-field inline col s6">
+      <button class="waves-effect waves-light btn-small blue darken-2" style="margin-top: 5px;" type="submit" name="action"> Ara</button>
+    </div>
+  </div>
+</div>          
+
+    <div class="col l3 m3 s6" id="footer-sitemap">
+      <h6 class="white-text">Site haritası</h6>
+        <ul>
+          <li><a class="blue-text text-darken-4" href="/about"><b>Hakkımızda</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/clean"><b>Temizlik</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/service"><b>Hizmetler</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/izmir"><b>İzmir bölgeleri</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/standard"><b>Değerlendirme</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/hire"><b>İş / Kariyer</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/quote"><b>Teklif</b></a></li>
+          <li><a class="blue-text text-darken-4" href="/booking"><b>Randevu</b></a></li>
+        </ul>
+    </div>
+    <div class="col l3 m3 s6" id="footer-map">
+      <h6 class="white-text">Konumumuz</h6>
+      <div class="footer-map-embed z-depth-1">
+        <iframe
+          title="Konum haritası"
+          width="100%"
+          height="200"
+          style="border:0; display:block;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=28.94%2C41.01%2C29.05%2C41.06&amp;layer=mapnik&amp;marker=41.0369%2C28.9850">
+        </iframe>
+      </div>
+      <p class="grey-text text-lighten-3" style="font-size: 12px; margin-top: 8px;">
+        <a href="https://www.openstreetmap.org/?mlat=41.0369&amp;mlon=28.9850#map=14/41.0369/28.9850" class="grey-text text-lighten-2" target="_blank" rel="noopener">Haritayı büyüt</a>
+      </p>
+    </div>       
+        
+ </div>       
+</div>
+  
+<div class="footer-copyright" style="margin-top: -18px;"> 
+  <div class="container">
+    <a class="blue-text text-darken-4 left"
+href="/copyright"><b>© Pro Temizlik Hizmetleri</b></a>
+    <a class="grey-text text-lighten-4 right" href="/access">&nbsp;&nbsp;Erişilebilirlik</a> 
+    <a class="grey-text text-lighten-4 right" href="/privacy">&nbsp&nbsp;Gizlilik Politikası</a> 
+    <a class="grey-text text-lighten-4 right" href="/terms">&nbsp;&nbsp;Kullanım Şartları</a> 
+  </div>
+</div>
+ 
+</footer>

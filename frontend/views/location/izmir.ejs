@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<%- include('../partials/head.ejs') %>
+<body>
+<%- include('../partials/nav.ejs') %>
+
+<main class="container" style="padding-bottom: 3rem;">
+  <header class="section">
+    <h1 class="blue-text text-darken-3" style="font-size: 1.75rem; font-weight: 700;">İzmir temizlik hizmeti bölgeleri</h1>
+    <p class="grey-text text-darken-2" style="max-width: 42rem;">
+      Aşağıdaki ilçe sayfalarından hizmet kategorilerine ulaşabilirsiniz. Metinler örnektir; kendi hizmet açıklamalarınızla güncelleyebilirsiniz.
+    </p>
+  </header>
+
+  <nav class="breadcrumb" aria-label="Sayfa konumu" style="margin-bottom: 1.5rem; font-size: 14px;">
+    <a href="/">Ana sayfa</a>
+    <span class="grey-text"> / </span>
+    <span class="grey-text text-darken-2">İzmir</span>
+  </nav>
+
+  <div class="row">
+    <% districts.forEach(function (d) { %>
+      <div class="col s6 m4 l3">
+        <div class="card-panel blue darken-1 white-text hoverable" style="margin-bottom: 12px;">
+          <a href="/izmir/<%= d.slug %>" class="white-text" style="font-weight: 600;"><%= d.name %></a>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<%- include('../partials/scripts.ejs') %>
+</body>
+</html>
